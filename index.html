@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joe McAdam — Builder. Operator. Connector.</title>
+  <meta name="description" content="Joe McAdam is a faith-driven builder, operator, and connector helping people build a blessed life through Faith, Family, Fitness, Finances, and Fun." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FAF9F6;
+      color: #334155;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── Color Tokens ─────────────────────────────────────────── */
+    :root {
+      --cream:       #FAF9F6;
+      --sand:        #F5EFE6;
+      --navy:        #334155;
+      --navy-dark:   #1e2a3a;
+      --gray:        #2C2C2C;
+      --blue:        #A7C7D9;
+      --blue-light:  #D6EAF5;
+      --blue-mid:    #7BAEC8;
+      --gold:        #F4C95D;
+      --gold-dark:   #D4A017;
+      --coral:       #EB796F;
+      --muted:       #64748B;
+      --border:      #E2DDD6;
+      --white:       #FFFFFF;
+      --shadow-sm:   0 1px 3px rgba(51,65,85,0.08), 0 1px 2px rgba(51,65,85,0.04);
+      --shadow-md:   0 4px 16px rgba(51,65,85,0.10), 0 2px 6px rgba(51,65,85,0.06);
+      --shadow-lg:   0 12px 40px rgba(51,65,85,0.12), 0 4px 12px rgba(51,65,85,0.06);
+      --radius:      12px;
+      --radius-lg:   20px;
+    }
+
+    /* ─── Typography ───────────────────────────────────────────── */
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.2; color: var(--navy-dark); }
+    h1 { font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 700; }
+    h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 600; }
+    h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 600; }
+    p  { color: var(--muted); font-size: 1.05rem; }
+
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-mid);
+      margin-bottom: 0.75rem;
+    }
+    .section-title { margin-bottom: 1rem; }
+    .section-intro { max-width: 600px; font-size: 1.1rem; }
+
+    /* ─── Layout Helpers ───────────────────────────────────────── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    .section { padding: 6rem 0; }
+    .section-alt { background: var(--sand); }
+    .section-navy { background: var(--navy-dark); }
+    .text-center { text-align: center; }
+    .text-center .section-intro { margin: 0 auto; }
+
+    /* ─── Navigation ───────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250,249,246,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s ease;
+    }
+    nav.scrolled { box-shadow: var(--shadow-md); }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+    }
+    .nav-brand span { color: var(--gold-dark); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--navy);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold-dark); }
+    .nav-cta {
+      background: var(--navy-dark);
+      color: var(--white) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      font-size: 0.875rem !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--navy) !important; transform: translateY(-1px); }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--navy-dark);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      z-index: 99;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--navy);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* ─── Hero ─────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding-top: 68px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663224174455/BpLVBvTRA85EwrEFRNXZkF/hero-bg-L2xDydC87EFiSbKTDiNJfa.webp');
+      background-size: cover;
+      background-position: center 30%;
+      filter: brightness(0.72);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(30,42,58,0.75) 0%,
+        rgba(30,42,58,0.45) 50%,
+        rgba(167,199,217,0.15) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(244,201,93,0.18);
+      border: 1px solid rgba(244,201,93,0.4);
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      color: var(--blue-light);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+    .hero-statement {
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      color: rgba(255,255,255,0.88);
+      max-width: 560px;
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
+    }
+    .hero-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.23,1,0.32,1);
+      border: none;
+      text-decoration: none;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy-dark);
+    }
+    .btn-primary:hover { background: var(--gold-dark); color: var(--white); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(244,201,93,0.35); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: var(--white); transform: translateY(-2px); }
+    .btn-navy {
+      background: var(--navy-dark);
+      color: var(--white);
+    }
+    .btn-navy:hover { background: #273447; transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--navy);
+      border: 2px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--navy); background: var(--sand); transform: translateY(-2px); }
+
+    /* ─── Bio Section ──────────────────────────────────────────── */
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .bio-visual {
+      position: relative;
+    }
+    .bio-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+    }
+    .bio-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--navy-dark);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      border-left: 3px solid var(--gold);
+      padding-left: 1.25rem;
+    }
+    .bio-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tag {
+      background: var(--blue-light);
+      color: var(--navy);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 0.9rem;
+      border-radius: 50px;
+    }
+    .tag-gold { background: rgba(244,201,93,0.2); color: var(--gold-dark); }
+    .bio-text p { margin-bottom: 1.25rem; }
+    .bio-text p:last-child { margin-bottom: 0; }
+
+    /* ─── 5 F's Section ────────────────────────────────────────── */
+    .fives-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .f-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      transition: transform 0.25s cubic-bezier(0.23,1,0.32,1), box-shadow 0.25s;
+      cursor: default;
+    }
+    .f-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .f-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+    .f-icon svg { width: 26px; height: 26px; }
+    .f-card h3 { font-size: 1.2rem; margin-bottom: 0.75rem; }
+    .f-card p { font-size: 0.9rem; line-height: 1.6; }
+
+    /* ─── What I Build ─────────────────────────────────────────── */
+    .build-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .build-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      transition: transform 0.25s cubic-bezier(0.23,1,0.32,1), box-shadow 0.25s;
+    }
+    .build-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .build-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--blue-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .build-icon svg { width: 22px; height: 22px; color: var(--navy); }
+    .build-card h3 { font-size: 1.05rem; margin-bottom: 0.6rem; }
+    .build-card p { font-size: 0.9rem; }
+
+    /* ─── Behind the Scenes ────────────────────────────────────── */
+    .behind-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .behind-inner h2 { margin-bottom: 1.5rem; }
+    .behind-inner p { margin-bottom: 1.25rem; font-size: 1.05rem; }
+    .behind-micro {
+      display: inline-block;
+      margin-top: 2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--navy-dark);
+      padding: 1.25rem 2.5rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border-left: 4px solid var(--gold);
+    }
+
+    /* ─── Current Focus ────────────────────────────────────────── */
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .focus-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem 2rem 2rem 2.25rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--blue-mid);
+      transition: transform 0.25s cubic-bezier(0.23,1,0.32,1), box-shadow 0.25s;
+    }
+    .focus-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .focus-card.accent-gold { border-left-color: var(--gold); }
+    .focus-card.accent-coral { border-left-color: var(--coral); }
+    .focus-card.accent-navy { border-left-color: var(--navy); }
+    .focus-card h3 { font-size: 1.1rem; margin-bottom: 0.6rem; }
+    .focus-card p { font-size: 0.92rem; }
+
+    /* ─── Blessed Life Feature ─────────────────────────────────── */
+    .blessed-inner {
+      background: var(--navy-dark);
+      border-radius: var(--radius-lg);
+      padding: 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .blessed-inner::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(167,199,217,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blessed-inner::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(244,201,93,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .blessed-text { position: relative; z-index: 1; }
+    .blessed-text .section-label { color: var(--gold); }
+    .blessed-text h2 { color: var(--white); margin-bottom: 1.25rem; }
+    .blessed-text p { color: rgba(255,255,255,0.75); margin-bottom: 1.25rem; font-size: 1.05rem; }
+    .blessed-visual {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .blessed-pill {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50px;
+      padding: 0.75rem 1.5rem;
+      color: var(--white);
+      font-size: 0.95rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .blessed-pill-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ─── Connect Section ──────────────────────────────────────── */
+    .connect-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .connect-inner h2 { margin-bottom: 1rem; }
+    .connect-inner > p { margin-bottom: 2.5rem; font-size: 1.1rem; }
+    .connect-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .connect-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .connect-link {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .connect-link:hover { color: var(--navy-dark); }
+
+    /* ─── Footer ───────────────────────────────────────────────── */
+    footer {
+      background: var(--navy-dark);
+      color: rgba(255,255,255,0.7);
+      padding: 3rem 0;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+    }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-links a {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ─── Dividers ─────────────────────────────────────────────── */
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 1.25rem 0 2rem;
+    }
+    .divider-center { margin: 1.25rem auto 2rem; }
+
+    /* ─── Responsive ───────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .fives-grid { grid-template-columns: repeat(3, 1fr); }
+      .bio-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .bio-visual { order: -1; }
+      .build-grid { grid-template-columns: repeat(2, 1fr); }
+      .blessed-inner { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem; }
+      .focus-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .section { padding: 4rem 0; }
+      .fives-grid { grid-template-columns: repeat(2, 1fr); }
+      .build-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero-ctas { flex-direction: column; align-items: flex-start; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-links { margin-top: 1rem; }
+      .blessed-inner { padding: 2rem 1.5rem; }
+    }
+    @media (max-width: 400px) {
+      .fives-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ─── Scroll animations ────────────────────────────────────── */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.6s cubic-bezier(0.23,1,0.32,1), transform 0.6s cubic-bezier(0.23,1,0.32,1);
+      }
+      .reveal.visible { opacity: 1; transform: translateY(0); }
+      .reveal-delay-1 { transition-delay: 0.1s; }
+      .reveal-delay-2 { transition-delay: 0.2s; }
+      .reveal-delay-3 { transition-delay: 0.3s; }
+      .reveal-delay-4 { transition-delay: 0.4s; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Navigation ─────────────────────────────────────────── -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">Joe <span>McAdam</span></a>
+      <ul class="nav-links">
+        <li><a href="#fives">5 F's</a></li>
+        <li><a href="#build">What I Build</a></li>
+        <li><a href="#focus">Current Focus</a></li>
+        <li><a href="#connect" class="nav-cta">Connect</a></li>
+      </ul>
+      <div class="nav-hamburger" id="hamburger" aria-label="Open menu" role="button" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#fives" onclick="closeMobile()">5 F's</a>
+    <a href="#build" onclick="closeMobile()">What I Build</a>
+    <a href="#focus" onclick="closeMobile()">Current Focus</a>
+    <a href="#connect" onclick="closeMobile()">Connect</a>
+  </div>
+
+  <!-- ─── Hero ──────────────────────────────────────────────── -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        Faith-Driven Builder &amp; Operator
+      </div>
+      <h1>Joe McAdam</h1>
+      <p class="hero-tagline">Builder. Operator. Connector.</p>
+      <p class="hero-statement">Helping faith-driven people build a blessed life through Faith, Family, Fitness, Finances, and Fun.</p>
+      <p class="hero-sub">Less chaos. More calling. Better life.</p>
+      <div class="hero-ctas">
+        <a href="#connect" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Connect With Me
+        </a>
+        <a href="https://theblessedlife.co" target="_blank" rel="noopener" class="btn btn-outline">
+          Explore The Blessed Life
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Who I Am ───────────────────────────────────────────── -->
+  <section class="section" id="bio">
+    <div class="container">
+      <div class="bio-grid">
+        <div class="bio-text reveal">
+          <p class="section-label">Who I Am</p>
+          <h2 class="section-title">Behind the Vision,<br>Beside the Builder</h2>
+          <div class="divider"></div>
+          <p>Joe McAdam works behind the scenes building brands, systems, AI tools, funnels, partnerships, and business operations for faith-driven ventures. Alongside his wife, Kathryn McAdam, he helps develop the vision behind TheBlessedLife.co — a lifestyle movement helping people build a blessed life through Faith, Family, Fitness, Finances, and Fun.</p>
+          <p>Joe's strength is taking scattered ideas, opportunities, platforms, and projects and turning them into simple next steps, clear systems, and forward momentum.</p>
+        </div>
+        <div class="bio-visual reveal reveal-delay-2">
+          <div class="bio-card">
+            <p class="bio-quote">"Sort the chaos. Choose the next action. Build what matters."</p>
+            <div class="bio-tags">
+              <span class="tag">Faith-Driven</span>
+              <span class="tag">Builder</span>
+              <span class="tag">Operator</span>
+              <span class="tag">Connector</span>
+              <span class="tag tag-gold">TheBlessedLife.co</span>
+              <span class="tag tag-gold">Systems Thinker</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 5 F's ───────────────────────────────────────────────── -->
+  <section class="section section-alt" id="fives">
+    <div class="container text-center">
+      <p class="section-label reveal">The Framework</p>
+      <h2 class="section-title reveal">The 5 F's</h2>
+      <div class="divider divider-center reveal"></div>
+      <p class="section-intro reveal">A blessed life is not just one thing. It is built through the areas that matter most.</p>
+      <div class="fives-grid">
+
+        <!-- Faith -->
+        <div class="f-card reveal reveal-delay-1">
+          <div class="f-icon" style="background: rgba(244,201,93,0.15);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#D4A017" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L12 22M2 12L22 12"/>
+            </svg>
+          </div>
+          <h3>Faith</h3>
+          <p>Build life and business on biblical values, purpose, calling, and conviction.</p>
+        </div>
+
+        <!-- Family -->
+        <div class="f-card reveal reveal-delay-2">
+          <div class="f-icon" style="background: rgba(167,199,217,0.2);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#7BAEC8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <h3>Family</h3>
+          <p>Create rhythms, businesses, and opportunities that strengthen home, marriage, relationships, and legacy.</p>
+        </div>
+
+        <!-- Fitness -->
+        <div class="f-card reveal reveal-delay-3">
+          <div class="f-icon" style="background: rgba(52,211,153,0.12);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3>Fitness</h3>
+          <p>Steward your energy, body, health, strength, and daily habits so you can live with purpose.</p>
+        </div>
+
+        <!-- Finances -->
+        <div class="f-card reveal reveal-delay-4">
+          <div class="f-icon" style="background: rgba(99,102,241,0.1);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>Finances</h3>
+          <p>Think differently about stewardship, protection, opportunity, freedom, and long-term legacy.</p>
+        </div>
+
+        <!-- Fun -->
+        <div class="f-card reveal reveal-delay-1">
+          <div class="f-icon" style="background: rgba(235,121,111,0.12);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#EB796F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+              <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+              <line x1="6" y1="1" x2="6" y2="4"/>
+              <line x1="10" y1="1" x2="10" y2="4"/>
+              <line x1="14" y1="1" x2="14" y2="4"/>
+            </svg>
+          </div>
+          <h3>Fun</h3>
+          <p>Build a life you actually want to live — with adventure, coffee, connection, laughter, and room to enjoy the good life.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── What I Build ──────────────────────────────────────── -->
+  <section class="section" id="build">
+    <div class="container">
+      <p class="section-label reveal">What I Build</p>
+      <h2 class="section-title reveal">Connecting Vision to Movement</h2>
+      <div class="divider reveal"></div>
+      <p class="section-intro reveal">Joe helps connect the vision, people, tools, and systems that move ideas forward.</p>
+      <div class="build-grid">
+
+        <div class="build-card reveal reveal-delay-1">
+          <div class="build-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            </svg>
+          </div>
+          <h3>Mission Control Systems</h3>
+          <p>Operating systems for entrepreneurs that sort chaos, clarify priorities, and create forward momentum.</p>
+        </div>
+
+        <div class="build-card reveal reveal-delay-2">
+          <div class="build-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+          </div>
+          <h3>Faith-Based Lifestyle Brands</h3>
+          <p>Legacy brands rooted in faith, family, and purpose — built to inspire, serve, and endure.</p>
+        </div>
+
+        <div class="build-card reveal reveal-delay-3">
+          <div class="build-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+            </svg>
+          </div>
+          <h3>AI-Supported Operations</h3>
+          <p>Simple AI tools and workflows that reduce complexity and help entrepreneurs move faster with less effort.</p>
+        </div>
+
+        <div class="build-card reveal reveal-delay-1">
+          <div class="build-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3>Funnels &amp; Follow-Up</h3>
+          <p>Business workflows, funnels, and follow-up systems that turn attention into action and action into results.</p>
+        </div>
+
+        <div class="build-card reveal reveal-delay-2">
+          <div class="build-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>Health, Wealth &amp; Purpose Projects</h3>
+          <p>Initiatives at the intersection of personal health, financial stewardship, and purpose-driven living.</p>
+        </div>
+
+        <div class="build-card reveal reveal-delay-3">
+          <div class="build-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <h3>Tools That Simplify &amp; Monetize</h3>
+          <p>Practical tools that help people simplify their work, monetize their skills, and move forward with clarity.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Behind the Scenes ─────────────────────────────────── -->
+  <section class="section section-alt" id="behind">
+    <div class="container">
+      <div class="behind-inner">
+        <p class="section-label reveal">Behind the Scenes</p>
+        <h2 class="reveal">The Work Behind the Work</h2>
+        <div class="divider divider-center reveal"></div>
+        <p class="reveal">Most people only see the finished brand, funnel, event, or offer. Joe works behind the scenes connecting the people, tools, systems, and ideas that make the whole thing move.</p>
+        <p class="reveal">Whether it is organizing a new opportunity, building a simple operating system, mapping a funnel, or helping clarify the next best action — Joe is wired to turn complexity into movement.</p>
+        <div class="behind-micro reveal">"Sort the chaos. Choose the next action. Build what matters."</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Current Focus ─────────────────────────────────────── -->
+  <section class="section" id="focus">
+    <div class="container">
+      <p class="section-label reveal">Current Focus</p>
+      <h2 class="section-title reveal">What's Being Built Now</h2>
+      <div class="divider reveal"></div>
+      <div class="focus-grid">
+
+        <div class="focus-card reveal reveal-delay-1">
+          <h3>TheBlessedLife.co</h3>
+          <p>A lifestyle movement for building a blessed life through Faith, Family, Fitness, Finances, and Fun.</p>
+        </div>
+
+        <div class="focus-card accent-gold reveal reveal-delay-2">
+          <h3>Kathryn McAdam Brand</h3>
+          <p>Supporting Kathryn's faith-based functional medicine, book, courses, coaching, speaking, and health transformation ecosystem.</p>
+        </div>
+
+        <div class="focus-card accent-navy reveal reveal-delay-3">
+          <h3>Wealth + Legacy Education</h3>
+          <p>Helping people think differently about stewardship, protection, opportunity, and long-term freedom.</p>
+        </div>
+
+        <div class="focus-card accent-coral reveal reveal-delay-4">
+          <h3>AI + Operations</h3>
+          <p>Building simple systems that help entrepreneurs reduce chaos and move faster.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── The Blessed Life Feature ─────────────────────────── -->
+  <section class="section section-alt" id="blessed">
+    <div class="container">
+      <div class="blessed-inner">
+        <div class="blessed-text reveal">
+          <p class="section-label">Featured Project</p>
+          <h2>The Blessed Life</h2>
+          <p>TheBlessedLife.co is the umbrella lifestyle brand Joe and Kathryn are developing to help people build a life rooted in faith, health, family, finances, purpose, freedom, and joy.</p>
+          <p>The heart of the movement is simple: build a life that honors God, strengthens your family, restores your health, grows your stewardship, and leaves room for joy.</p>
+          <a href="https://theblessedlife.co" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 0.5rem;">
+            Explore The Blessed Life
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+        <div class="blessed-visual reveal reveal-delay-2">
+          <div class="blessed-pill"><span class="blessed-pill-dot"></span>Faith — Build on biblical values &amp; calling</div>
+          <div class="blessed-pill"><span class="blessed-pill-dot"></span>Family — Strengthen home &amp; legacy</div>
+          <div class="blessed-pill"><span class="blessed-pill-dot"></span>Fitness — Steward your health &amp; energy</div>
+          <div class="blessed-pill"><span class="blessed-pill-dot"></span>Finances — Grow stewardship &amp; freedom</div>
+          <div class="blessed-pill"><span class="blessed-pill-dot"></span>Fun — Build a life worth living</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Connect ───────────────────────────────────────────── -->
+  <section class="section" id="connect">
+    <div class="container">
+      <div class="connect-inner">
+        <p class="section-label reveal">Let's Connect</p>
+        <h2 class="reveal">Ready to Build Something?</h2>
+        <div class="divider divider-center reveal"></div>
+        <p class="reveal">If you are building something faith-driven, family-centered, freedom-focused, or legacy-minded, Joe would love to connect.</p>
+        <div class="connect-ctas reveal">
+          <a href="https://linkedin.com/in/joemcadam" target="_blank" rel="noopener" class="btn btn-navy">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            Connect on LinkedIn
+          </a>
+          <a href="mailto:joe@theblessedlife.co" class="btn btn-ghost">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email Joe
+          </a>
+          <a href="https://theblessedlife.co" target="_blank" rel="noopener" class="btn btn-ghost">
+            Explore The Blessed Life
+          </a>
+        </div>
+        <div class="connect-links reveal">
+          <a href="https://theblessedlife.co" target="_blank" rel="noopener" class="connect-link">TheBlessedLife.co</a>
+          <a href="https://kathrynmcadam.com" target="_blank" rel="noopener" class="connect-link">KathrynMcAdam.com</a>
+          <a href="https://linkedin.com/in/joemcadam" target="_blank" rel="noopener" class="connect-link">LinkedIn</a>
+          <a href="mailto:joe@theblessedlife.co" class="connect-link">Email</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Joe McAdam</div>
+        <div class="footer-tagline">Builder. Operator. Connector. &nbsp;·&nbsp; Faith. Family. Fitness. Finances. Fun.</div>
+      </div>
+      <div class="footer-links">
+        <a href="https://theblessedlife.co" target="_blank" rel="noopener">TheBlessedLife.co</a>
+        <a href="https://kathrynmcadam.com" target="_blank" rel="noopener">KathrynMcAdam.com</a>
+        <a href="https://linkedin.com/in/joemcadam" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:joe@theblessedlife.co">Email</a>
+      </div>
+    </div>
+    <div class="container">
+      <div class="footer-copy">© 2026 Joe McAdam. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- ─── Scripts ───────────────────────────────────────────── -->
+  <script>
+    // Navbar scroll shadow
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    hamburger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') mobileMenu.classList.toggle('open');
+    });
+    function closeMobile() {
+      mobileMenu.classList.remove('open');
+    }
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
