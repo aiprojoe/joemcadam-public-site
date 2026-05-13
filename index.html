@@ -78,13 +78,15 @@
     .fives { background: var(--cream); }
     .fives-head { text-align: center; margin-bottom: 4rem; }
     .fives-head .s-body { margin: 0 auto; }
-    .fives-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 1.5rem; }
-    .f-card { background: var(--white); border-radius: var(--radius); padding: 2.25rem 1.5rem; text-align: center; box-shadow: var(--shadow-card); border: 1px solid rgba(30,42,58,0.06); transition: transform 0.22s cubic-bezier(0.23,1,0.32,1), box-shadow 0.22s; }
-    .f-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-soft); }
-    .f-icon { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; font-size: 1.5rem; }
+    .fives-stack { display: flex; flex-direction: column; gap: 1.25rem; max-width: 720px; margin: 0 auto; }
+    .f-card { background: var(--white); border-radius: var(--radius); padding: 2rem 2.25rem; display: flex; align-items: flex-start; gap: 1.75rem; box-shadow: var(--shadow-card); border: 1px solid rgba(30,42,58,0.06); transition: transform 0.22s cubic-bezier(0.23,1,0.32,1), box-shadow 0.22s; }
+    .f-card:hover { transform: translateX(5px); box-shadow: var(--shadow-soft); }
+    .f-icon { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.5rem; }
     .ic-faith{background:#fef3e2} .ic-family{background:#fce8e8} .ic-fitness{background:#e8f5e9} .ic-finance{background:#e8eef8} .ic-fun{background:#fdf0e8}
-    .f-name { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 500; color: var(--navy); margin-bottom: 0.5rem; }
-    .f-desc { font-size: 0.875rem; color: var(--text-light); line-height: 1.65; }
+    .f-text {}
+    .f-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .f-name { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 500; color: var(--navy); margin-bottom: 0.45rem; }
+    .f-desc { font-size: 0.925rem; color: var(--text-light); line-height: 1.7; }
 
     .build { background: var(--cream-dark); }
     .build-top { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-bottom: 3.5rem; }
@@ -176,12 +178,47 @@
       <h2 class="s-title reveal">The 5 F&rsquo;s</h2>
       <p class="s-body reveal">Everything I do &mdash; the businesses I build, the people I connect, the life I live &mdash; comes back to five things. Not a brand. A belief system.</p>
     </div>
-    <div class="fives-grid">
-      <div class="f-card reveal"><div class="f-icon ic-faith">&#x1F64F;</div><div class="f-name">Faith</div><p class="f-desc">The anchor. Everything else is built on this foundation.</p></div>
-      <div class="f-card reveal"><div class="f-icon ic-family">&#x2764;&#xFE0F;</div><div class="f-name">Family</div><p class="f-desc">Kathryn, the kids, and the people who matter most.</p></div>
-      <div class="f-card reveal"><div class="f-icon ic-fitness">&#x1F4AA;</div><div class="f-name">Fitness</div><p class="f-desc">Strong body, clear mind. The energy to show up fully.</p></div>
-      <div class="f-card reveal"><div class="f-icon ic-finance">&#x1F4BC;</div><div class="f-name">Finances</div><p class="f-desc">Building wealth with purpose &mdash; freedom, not just money.</p></div>
-      <div class="f-card reveal"><div class="f-icon ic-fun">&#x1F30A;</div><div class="f-name">Fun</div><p class="f-desc">Lake Michigan, good coffee, and a life worth living.</p></div>
+    <div class="fives-stack">
+      <div class="f-card reveal">
+        <div class="f-icon ic-faith">&#x1F64F;</div>
+        <div class="f-text">
+          <div class="f-label">F1 &mdash; Faith</div>
+          <div class="f-name">The Anchor</div>
+          <p class="f-desc">Everything I do is rooted in faith. It is not a department of life &mdash; it is the foundation. When faith is right, everything else has a chance to be right too.</p>
+        </div>
+      </div>
+      <div class="f-card reveal">
+        <div class="f-icon ic-family">&#x2764;&#xFE0F;</div>
+        <div class="f-text">
+          <div class="f-label">F2 &mdash; Family</div>
+          <div class="f-name">The Why</div>
+          <p class="f-desc">Kathryn, the kids, and the people who matter most. Every business I build, every decision I make, runs through this filter: does this serve my family or take from it?</p>
+        </div>
+      </div>
+      <div class="f-card reveal">
+        <div class="f-icon ic-fitness">&#x1F4AA;</div>
+        <div class="f-text">
+          <div class="f-label">F3 &mdash; Fitness</div>
+          <div class="f-name">The Energy</div>
+          <p class="f-desc">You cannot build a blessed life from a depleted body. Fitness is not vanity &mdash; it is stewardship. Strong body, clear mind, the energy to show up fully for everyone who depends on you.</p>
+        </div>
+      </div>
+      <div class="f-card reveal">
+        <div class="f-icon ic-finance">&#x1F4BC;</div>
+        <div class="f-text">
+          <div class="f-label">F4 &mdash; Finances</div>
+          <div class="f-name">The Freedom</div>
+          <p class="f-desc">Wealth is a tool, not a goal. I help people build financial foundations &mdash; insurance, planning, income streams &mdash; that create freedom to live on purpose, not just on a paycheck.</p>
+        </div>
+      </div>
+      <div class="f-card reveal">
+        <div class="f-icon ic-fun">&#x1F3D6;&#xFE0F;</div>
+        <div class="f-text">
+          <div class="f-label">F5 &mdash; Fun</div>
+          <div class="f-name">The Reward</div>
+          <p class="f-desc">Life is meant to be enjoyed. Lake Michigan mornings, family adventures, good food, great friends. Fun is not a luxury &mdash; it is a reminder that you are building something worth living in.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
