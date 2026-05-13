@@ -98,9 +98,10 @@
 
     /* ── 5 F'S ── */
     .fives { background: var(--cream); }
+    /* Desktop: 5 in a row */
     .fives-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.25rem; }
     .f-card {
-      background: var(--white); border-radius: var(--r); padding: 2.25rem 1.5rem 2rem;
+      background: var(--white); border-radius: var(--r); padding: 2.5rem 1.75rem 2.25rem;
       text-align: center; box-shadow: var(--shadow);
       border-top: 3px solid transparent;
       transition: transform 0.22s cubic-bezier(0.23,1,0.32,1), box-shadow 0.22s;
@@ -112,16 +113,15 @@
     .f-card.c-fitness{ border-top-color: #5aaa72; }
     .f-card.c-finance{ border-top-color: var(--blue); }
     .f-card.c-fun    { border-top-color: #e8a84a; }
-    .f-num { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-light); margin-bottom: 1rem; }
-    .f-icon-wrap { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.1rem; }
+    .f-icon-wrap { width: 68px; height: 68px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
     .f-card.c-faith  .f-icon-wrap { background: #fef3e2; }
     .f-card.c-family .f-icon-wrap { background: var(--coral-light); }
     .f-card.c-fitness .f-icon-wrap { background: var(--green-light); }
     .f-card.c-finance .f-icon-wrap { background: var(--blue-light); }
     .f-card.c-fun    .f-icon-wrap { background: #fdf0d8; }
-    .f-icon-svg { width: 28px; height: 28px; }
-    .f-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
-    .f-desc { font-size: 0.875rem; color: var(--text-mid); line-height: 1.65; }
+    .f-icon-svg { width: 30px; height: 30px; }
+    .f-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; color: var(--navy); margin-bottom: 0.55rem; }
+    .f-desc { font-size: 0.875rem; color: var(--text-mid); line-height: 1.7; }
 
     /* ── WHAT I BUILD ── */
     .build { background: var(--cream-mid); }
@@ -186,6 +186,7 @@
     .reveal.visible { opacity: 1; transform: none; }
 
     /* ── RESPONSIVE ── */
+    /* Tablet: 3 columns (3+2 balanced) */
     @media (max-width: 960px) {
       .fives-grid { grid-template-columns: repeat(3, 1fr); }
       .build-intro { grid-template-columns: 1fr; gap: 2rem; }
@@ -193,11 +194,15 @@
       .focus-grid { grid-template-columns: 1fr; }
       .blessed-inner { grid-template-columns: 1fr; gap: 3rem; }
     }
+    /* Mobile: single column — no orphan cards */
     @media (max-width: 640px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
       section { padding: 5rem 1.5rem; }
-      .fives-grid { grid-template-columns: repeat(2, 1fr); }
+      .fives-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .f-card { padding: 2rem 1.5rem 1.75rem; flex-direction: row; text-align: left; gap: 1.25rem; align-items: flex-start; }
+      .f-icon-wrap { flex-shrink: 0; margin: 0; width: 56px; height: 56px; }
+      .f-title { margin-bottom: 0.3rem; }
       .build-grid { grid-template-columns: 1fr; }
       .hero-photo { width: 100px; height: 100px; }
     }
@@ -246,7 +251,6 @@
     <div class="fives-grid">
 
       <div class="f-card c-faith reveal">
-        <div class="f-num">F 1</div>
         <div class="f-icon-wrap">
           <svg class="f-icon-svg" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M14 3L14 25M8 9H20" stroke="#c9973a" stroke-width="2.2" stroke-linecap="round"/>
@@ -257,7 +261,6 @@
       </div>
 
       <div class="f-card c-family reveal">
-        <div class="f-num">F 2</div>
         <div class="f-icon-wrap">
           <svg class="f-icon-svg" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M14 24C14 24 4 18 4 11a5 5 0 0110 0 5 5 0 0110 0c0 7-10 13-10 13z" stroke="#d9715a" stroke-width="2.2" stroke-linejoin="round"/>
@@ -268,7 +271,6 @@
       </div>
 
       <div class="f-card c-fitness reveal">
-        <div class="f-num">F 3</div>
         <div class="f-icon-wrap">
           <svg class="f-icon-svg" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="14" cy="8" r="3.5" stroke="#5aaa72" stroke-width="2.2"/>
@@ -280,7 +282,6 @@
       </div>
 
       <div class="f-card c-finance reveal">
-        <div class="f-num">F 4</div>
         <div class="f-icon-wrap">
           <svg class="f-icon-svg" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="4" y="8" width="20" height="14" rx="2.5" stroke="#4a7fa5" stroke-width="2.2"/>
@@ -293,7 +294,6 @@
       </div>
 
       <div class="f-card c-fun reveal">
-        <div class="f-num">F 5</div>
         <div class="f-icon-wrap">
           <svg class="f-icon-svg" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M14 4C14 4 6 10 6 16a8 8 0 0016 0c0-6-8-12-8-12z" stroke="#e8a84a" stroke-width="2.2" stroke-linejoin="round"/>
