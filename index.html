@@ -52,8 +52,9 @@
       position: relative; display: flex; align-items: center; justify-content: center;
       text-align: center; padding: 8rem 2rem 7rem;
     }
-    .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(18,26,38,0.5) 0%, rgba(18,26,38,0.28) 45%, rgba(18,26,38,0.62) 100%); }
-    .hero-content { position: relative; z-index: 1; max-width: 660px; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(18,26,38,0.52) 0%, rgba(18,26,38,0.30) 45%, rgba(18,26,38,0.65) 100%); }
+    .hero-content { position: relative; z-index: 1; max-width: 760px; display: flex; flex-direction: column; align-items: center; }
+    .hero-portrait { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; object-position: center top; border: 3.5px solid rgba(255,255,255,0.55); box-shadow: 0 8px 32px rgba(0,0,0,0.35); margin-bottom: 1.75rem; }
     .hero-eyebrow { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.75rem; }
     .hero-name { font-family: var(--font-serif); font-size: clamp(3.2rem,7.5vw,5.2rem); font-weight: 500; color: var(--white); line-height: 1.08; margin-bottom: 0.6rem; letter-spacing: -0.015em; }
     .hero-tagline { font-family: var(--font-serif); font-size: clamp(1.1rem,2.5vw,1.45rem); color: rgba(255,255,255,0.72); font-weight: 400; font-style: italic; margin-bottom: 2rem; }
@@ -133,6 +134,7 @@
       .fives-grid { grid-template-columns: repeat(2,1fr); }
       .build-grid { grid-template-columns: 1fr; }
       section { padding: 4.5rem 1.5rem; }
+      .hero-portrait { width: 108px; height: 108px; }
     }
   </style>
 </head>
@@ -150,6 +152,7 @@
 
 <section class="hero" id="hero">
   <div class="hero-content">
+    <img src="joe-headshot.jpg" alt="Joe McAdam" class="hero-portrait" />
     <span class="hero-eyebrow">Lake Michigan &nbsp;&middot;&nbsp; Faith &nbsp;&middot;&nbsp; Family &nbsp;&middot;&nbsp; Freedom</span>
     <h1 class="hero-name">Joe McAdam</h1>
     <p class="hero-tagline">Builder. Operator. Connector.</p>
