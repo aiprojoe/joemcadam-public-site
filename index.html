@@ -7,230 +7,316 @@
   <meta name="description" content="Joe McAdam helps faith-driven people build a blessed life through the 5 F's: Faith, Family, Fitness, Finances, and Fun." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --cream: #faf8f4;
-      --cream-dark: #f2ede4;
-      --navy: #1e2a3a;
-      --navy-light: #2c3e55;
-      --gold: #c9973a;
-      --gold-light: #e8b96a;
-      --text: #2d2520;
-      --text-light: #6b5f55;
-      --white: #ffffff;
-      --font-serif: 'Playfair Display', Georgia, serif;
-      --font-sans: 'Inter', system-ui, sans-serif;
-      --radius: 14px;
-      --shadow-card: 0 2px 16px rgba(30,42,58,0.07);
-      --shadow-soft: 0 6px 32px rgba(30,42,58,0.10);
+      --cream:       #faf8f4;
+      --cream-mid:   #f4efe6;
+      --cream-dark:  #ede6d9;
+      --navy:        #1e2d40;
+      --navy-mid:    #2c3e55;
+      --blue:        #4a7fa5;
+      --blue-light:  #d6e9f5;
+      --gold:        #c9973a;
+      --gold-light:  #e8c07a;
+      --coral:       #d9715a;
+      --coral-light: #fae8e3;
+      --green-light: #e3f0e8;
+      --text:        #2a2420;
+      --text-mid:    #5a5048;
+      --text-light:  #8a7d72;
+      --white:       #ffffff;
+      --serif:       'Playfair Display', Georgia, serif;
+      --sans:        'Inter', system-ui, sans-serif;
+      --r:           16px;
+      --r-sm:        10px;
+      --shadow:      0 2px 18px rgba(30,45,64,0.08);
+      --shadow-md:   0 6px 36px rgba(30,45,64,0.13);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font-sans); background: var(--cream); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
 
+    /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 1.25rem 2.5rem;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      padding: 1.1rem 2.5rem;
       display: flex; align-items: center; justify-content: space-between;
-      transition: background 0.35s, box-shadow 0.35s;
+      transition: background 0.3s, box-shadow 0.3s;
     }
-    nav.scrolled { background: rgba(250,248,244,0.96); backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgba(30,42,58,0.08); }
-    .nav-logo { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 500; color: var(--white); text-decoration: none; letter-spacing: 0.01em; transition: color 0.3s; }
+    nav.scrolled { background: rgba(250,248,244,0.97); backdrop-filter: blur(16px); box-shadow: 0 1px 0 rgba(30,45,64,0.09); }
+    .nav-logo { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; color: var(--white); text-decoration: none; transition: color 0.3s; }
     nav.scrolled .nav-logo { color: var(--navy); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-size: 0.875rem; font-weight: 500; color: rgba(255,255,255,0.82); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
-    nav.scrolled .nav-links a { color: var(--text-light); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.8); text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s; }
+    nav.scrolled .nav-links a { color: var(--text-mid); }
     .nav-links a:hover { color: var(--gold-light) !important; }
-    .nav-cta { font-size: 0.875rem; font-weight: 600; color: var(--white) !important; background: var(--gold); padding: 0.5rem 1.4rem; border-radius: 100px; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+    .nav-cta { background: var(--gold) !important; color: var(--white) !important; padding: 0.48rem 1.3rem; border-radius: 100px; font-weight: 600 !important; transition: background 0.2s, transform 0.15s !important; }
     .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
 
+    /* ── HERO ── */
     .hero {
       min-height: 100vh;
       background-image: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663224174455/BpLVBvTRA85EwrEFRNXZkF/hero-bg-v2-kX8kztfF885zWG3k8J5xYM.webp');
-      background-size: cover; background-position: center 42%;
+      background-size: cover; background-position: center 40%;
       position: relative; display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 8rem 2rem 7rem;
+      text-align: center; padding: 9rem 2rem 7rem;
     }
-    .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(18,26,38,0.52) 0%, rgba(18,26,38,0.30) 45%, rgba(18,26,38,0.65) 100%); }
-    .hero-content { position: relative; z-index: 1; max-width: 760px; display: flex; flex-direction: column; align-items: center; }
-    .hero-portrait { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; object-position: center top; border: 3.5px solid rgba(255,255,255,0.55); box-shadow: 0 8px 32px rgba(0,0,0,0.35); margin-bottom: 1.75rem; }
-    .hero-eyebrow { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.75rem; }
-    .hero-name { font-family: var(--font-serif); font-size: clamp(3.2rem,7.5vw,5.2rem); font-weight: 500; color: var(--white); line-height: 1.08; margin-bottom: 0.6rem; letter-spacing: -0.015em; }
-    .hero-tagline { font-family: var(--font-serif); font-size: clamp(1.1rem,2.5vw,1.45rem); color: rgba(255,255,255,0.72); font-weight: 400; font-style: italic; margin-bottom: 2rem; }
-    .hero-rule { width: 36px; height: 2px; background: var(--gold); margin: 0 auto 2rem; border-radius: 2px; }
-    .hero-description { font-size: 1.05rem; color: rgba(255,255,255,0.82); line-height: 1.85; max-width: 500px; margin: 0 auto 3rem; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(18,28,42,0.60) 0%, rgba(18,28,42,0.32) 50%, rgba(18,28,42,0.68) 100%); }
+    .hero-inner { position: relative; z-index: 1; max-width: 680px; display: flex; flex-direction: column; align-items: center; }
+    .hero-photo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; object-position: center 15%; border: 3px solid rgba(255,255,255,0.5); box-shadow: 0 8px 32px rgba(0,0,0,0.3); margin-bottom: 1.6rem; }
+    .hero-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.2rem; }
+    .hero-name { font-family: var(--serif); font-size: clamp(3rem,7vw,5rem); font-weight: 500; color: var(--white); line-height: 1.06; margin-bottom: 0.5rem; letter-spacing: -0.015em; }
+    .hero-role { font-family: var(--serif); font-size: clamp(1rem,2.2vw,1.3rem); color: rgba(255,255,255,0.68); font-style: italic; margin-bottom: 1.6rem; }
+    .hero-divider { width: 32px; height: 2px; background: var(--gold); border-radius: 2px; margin: 0 auto 1.6rem; }
+    .hero-desc { font-size: 1.05rem; color: rgba(255,255,255,0.82); line-height: 1.85; max-width: 500px; margin: 0 auto 0.9rem; }
+    .hero-sub { font-family: var(--serif); font-size: 1.1rem; font-style: italic; color: rgba(255,255,255,0.6); margin-bottom: 2.5rem; }
     .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-gold { display: inline-block; padding: 0.9rem 2.1rem; background: var(--gold); color: var(--white); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.03em; text-decoration: none; border-radius: 100px; transition: background 0.2s, transform 0.15s; }
-    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
-    .btn-ghost { display: inline-block; padding: 0.9rem 2.1rem; background: transparent; color: var(--white); font-size: 0.9rem; font-weight: 500; letter-spacing: 0.03em; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.45); border-radius: 100px; transition: border-color 0.2s, background 0.2s, transform 0.15s; }
-    .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+    .btn { display: inline-block; padding: 0.85rem 2rem; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.02em; text-decoration: none; border-radius: 100px; transition: transform 0.18s cubic-bezier(0.23,1,0.32,1), background 0.2s, box-shadow 0.2s; }
+    .btn:active { transform: scale(0.97); }
+    .btn-gold { background: var(--gold); color: var(--white); box-shadow: 0 4px 18px rgba(201,151,58,0.35); }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(201,151,58,0.45); }
+    .btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.45); }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: var(--white); transform: translateY(-2px); }
+    .btn-navy { background: var(--navy); color: var(--white); }
+    .btn-navy:hover { background: var(--navy-mid); transform: translateY(-2px); }
+    .btn-blue { background: var(--blue); color: var(--white); }
+    .btn-blue:hover { background: #3a6f95; transform: translateY(-2px); }
     .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 1; }
     .scroll-line { width: 1px; height: 44px; background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent); animation: pulse 2.2s ease-in-out infinite; }
-    @keyframes pulse { 0%,100%{opacity:.35} 50%{opacity:.9} }
+    @keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:.85} }
 
-    section { padding: 6.5rem 2rem; }
-    .inner { max-width: 960px; margin: 0 auto; }
-    .s-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; }
-    .s-title { font-family: var(--font-serif); font-size: clamp(1.8rem,4vw,2.6rem); font-weight: 500; color: var(--navy); line-height: 1.22; margin-bottom: 1.25rem; letter-spacing: -0.01em; }
-    .s-body { font-size: 1.05rem; color: var(--text-light); line-height: 1.85; max-width: 560px; }
+    /* ── SHARED SECTION STYLES ── */
+    section { padding: 7rem 2rem; }
+    .inner { max-width: 980px; margin: 0 auto; }
+    .inner-sm { max-width: 680px; margin: 0 auto; }
+    .sec-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.85rem; }
+    .sec-title { font-family: var(--serif); font-size: clamp(1.9rem,4vw,2.8rem); font-weight: 500; color: var(--navy); line-height: 1.2; margin-bottom: 1.1rem; letter-spacing: -0.01em; }
+    .sec-body { font-size: 1.05rem; color: var(--text-mid); line-height: 1.85; }
+    .sec-head { text-align: center; margin-bottom: 4rem; }
+    .sec-head .sec-body { max-width: 540px; margin: 0 auto; }
 
+    /* ── 5 F'S ── */
     .fives { background: var(--cream); }
-    .fives-head { text-align: center; margin-bottom: 4rem; }
-    .fives-head .s-body { margin: 0 auto; }
-    .fives-stack { display: flex; flex-direction: column; gap: 1.25rem; max-width: 720px; margin: 0 auto; }
-    .f-card { background: var(--white); border-radius: var(--radius); padding: 2rem 2.25rem; display: flex; align-items: flex-start; gap: 1.75rem; box-shadow: var(--shadow-card); border: 1px solid rgba(30,42,58,0.06); transition: transform 0.22s cubic-bezier(0.23,1,0.32,1), box-shadow 0.22s; }
-    .f-card:hover { transform: translateX(5px); box-shadow: var(--shadow-soft); }
-    .f-icon { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.5rem; }
-    .ic-faith{background:#fef3e2} .ic-family{background:#fce8e8} .ic-fitness{background:#e8f5e9} .ic-finance{background:#e8eef8} .ic-fun{background:#fdf0e8}
-    .f-text {}
-    .f-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
-    .f-name { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 500; color: var(--navy); margin-bottom: 0.45rem; }
-    .f-desc { font-size: 0.925rem; color: var(--text-light); line-height: 1.7; }
+    .fives-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.25rem; }
+    .f-card {
+      background: var(--white); border-radius: var(--r); padding: 2.25rem 1.5rem 2rem;
+      text-align: center; box-shadow: var(--shadow);
+      border-top: 3px solid transparent;
+      transition: transform 0.22s cubic-bezier(0.23,1,0.32,1), box-shadow 0.22s;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .f-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+    .f-card.c-faith  { border-top-color: var(--gold); }
+    .f-card.c-family { border-top-color: var(--coral); }
+    .f-card.c-fitness{ border-top-color: #5aaa72; }
+    .f-card.c-finance{ border-top-color: var(--blue); }
+    .f-card.c-fun    { border-top-color: #e8a84a; }
+    .f-num { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-light); margin-bottom: 1rem; }
+    .f-icon-wrap { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.1rem; }
+    .f-card.c-faith  .f-icon-wrap { background: #fef3e2; }
+    .f-card.c-family .f-icon-wrap { background: var(--coral-light); }
+    .f-card.c-fitness .f-icon-wrap { background: var(--green-light); }
+    .f-card.c-finance .f-icon-wrap { background: var(--blue-light); }
+    .f-card.c-fun    .f-icon-wrap { background: #fdf0d8; }
+    .f-icon-svg { width: 28px; height: 28px; }
+    .f-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+    .f-desc { font-size: 0.875rem; color: var(--text-mid); line-height: 1.65; }
 
-    .build { background: var(--cream-dark); }
-    .build-top { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-bottom: 3.5rem; }
-    .build-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
-    .b-card { background: var(--white); border-radius: var(--radius); padding: 1.875rem; box-shadow: var(--shadow-card); border: 1px solid rgba(30,42,58,0.06); transition: transform 0.22s cubic-bezier(0.23,1,0.32,1); }
-    .b-card:hover { transform: translateY(-4px); }
-    .b-icon { font-size: 1.6rem; margin-bottom: 0.85rem; }
-    .b-title { font-family: var(--font-serif); font-size: 1rem; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; }
-    .b-desc { font-size: 0.875rem; color: var(--text-light); line-height: 1.65; }
+    /* ── WHAT I BUILD ── */
+    .build { background: var(--cream-mid); }
+    .build-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-bottom: 3.5rem; }
+    .build-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .b-card { background: var(--white); border-radius: var(--r); padding: 1.875rem; box-shadow: var(--shadow); transition: transform 0.22s cubic-bezier(0.23,1,0.32,1); }
+    .b-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .b-icon { font-size: 1.75rem; margin-bottom: 0.85rem; }
+    .b-title { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; }
+    .b-desc { font-size: 0.875rem; color: var(--text-mid); line-height: 1.65; }
 
+    /* ── BEHIND THE SCENES ── */
+    .behind { background: var(--cream-dark); }
+    .behind-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+    .behind-quote { font-family: var(--serif); font-size: clamp(1.4rem,3vw,2rem); font-style: italic; font-weight: 400; color: var(--navy); line-height: 1.5; margin-bottom: 2rem; }
+    .behind-quote span { color: var(--gold); }
+    .behind-body { font-size: 1rem; color: var(--text-mid); line-height: 1.85; margin-bottom: 2.5rem; }
+    .behind-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; }
+    .tag { display: inline-block; font-size: 0.8rem; font-weight: 500; color: var(--navy-mid); background: var(--white); border: 1px solid rgba(30,45,64,0.12); border-radius: 100px; padding: 0.35rem 1rem; }
+
+    /* ── CURRENT FOCUS ── */
     .focus { background: var(--navy); }
-    .focus .s-label { color: var(--gold-light); }
-    .focus .s-title { color: var(--white); }
-    .focus .s-body { color: rgba(255,255,255,0.6); }
-    .focus-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 3rem; }
-    .fc-card { background: rgba(255,255,255,0.055); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 2rem; transition: background 0.2s; }
-    .fc-card:hover { background: rgba(255,255,255,0.09); }
-    .fc-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 0.7rem; }
-    .fc-title { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 500; color: var(--white); margin-bottom: 0.5rem; }
-    .fc-desc { font-size: 0.9rem; color: rgba(255,255,255,0.58); line-height: 1.7; }
+    .focus .sec-label { color: var(--gold-light); }
+    .focus .sec-title { color: var(--white); }
+    .focus .sec-body  { color: rgba(255,255,255,0.58); }
+    .focus-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 3rem; }
+    .fc { background: rgba(255,255,255,0.055); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--r); padding: 2rem 2rem 1.75rem; transition: background 0.2s; }
+    .fc:hover { background: rgba(255,255,255,0.09); }
+    .fc-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 0.65rem; }
+    .fc-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 500; color: var(--white); margin-bottom: 0.55rem; }
+    .fc-desc { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
 
+    /* ── THE BLESSED LIFE ── */
+    .blessed { background: var(--cream-mid); }
+    .blessed-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .blessed-text .sec-body { margin-bottom: 1.5rem; }
+    .blessed-pills { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-bottom: 2rem; }
+    .pill { font-size: 0.82rem; font-weight: 500; color: var(--navy); background: var(--blue-light); border-radius: 100px; padding: 0.38rem 1.1rem; }
+    .blessed-visual { background: var(--navy); border-radius: var(--r); padding: 3rem 2.5rem; text-align: center; }
+    .bv-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1rem; }
+    .bv-title { font-family: var(--serif); font-size: 1.8rem; font-weight: 500; color: var(--white); margin-bottom: 0.75rem; }
+    .bv-sub { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 2rem; }
+    .bv-items { display: flex; flex-direction: column; gap: 0.6rem; text-align: left; }
+    .bv-item { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: rgba(255,255,255,0.75); }
+    .bv-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+    /* ── CONNECT ── */
     .connect { background: var(--cream); text-align: center; }
-    .connect .inner { max-width: 600px; }
-    .connect .s-body { margin: 0 auto 2.75rem; }
-    .connect-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
-    .btn-navy { display: inline-block; padding: 0.9rem 2.1rem; background: var(--navy); color: var(--white); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.03em; text-decoration: none; border-radius: 100px; transition: background 0.2s, transform 0.15s; }
-    .btn-navy:hover { background: var(--navy-light); transform: translateY(-2px); }
+    .connect .sec-body { max-width: 480px; margin: 0 auto 2.75rem; }
+    .connect-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
     .connect-links { display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap; }
-    .c-link { font-size: 0.875rem; font-weight: 500; color: var(--text-light); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+    .c-link { font-size: 0.875rem; font-weight: 500; color: var(--text-mid); text-decoration: none; padding-bottom: 2px; border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; }
     .c-link:hover { color: var(--gold); border-color: var(--gold); }
 
+    /* ── FOOTER ── */
     footer { background: var(--navy); padding: 2.5rem 2rem; text-align: center; }
-    .f-name { font-family: var(--font-serif); font-size: 1rem; color: rgba(255,255,255,0.55); margin-bottom: 0.4rem; }
-    .f-sub { font-size: 0.78rem; color: rgba(255,255,255,0.3); letter-spacing: 0.06em; }
+    .ft-name { font-family: var(--serif); font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 0.35rem; }
+    .ft-sub { font-size: 0.75rem; color: rgba(255,255,255,0.28); letter-spacing: 0.07em; }
 
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s cubic-bezier(0.23,1,0.32,1), transform 0.65s cubic-bezier(0.23,1,0.32,1); }
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s cubic-bezier(0.23,1,0.32,1), transform 0.6s cubic-bezier(0.23,1,0.32,1); }
     .reveal.visible { opacity: 1; transform: none; }
 
-    @media (max-width: 900px) {
-      .fives-grid { grid-template-columns: repeat(3,1fr); }
-      .build-top { grid-template-columns: 1fr; gap: 2rem; }
-      .build-grid { grid-template-columns: repeat(2,1fr); }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .fives-grid { grid-template-columns: repeat(3, 1fr); }
+      .build-intro { grid-template-columns: 1fr; gap: 2rem; }
+      .build-grid { grid-template-columns: repeat(2, 1fr); }
       .focus-grid { grid-template-columns: 1fr; }
+      .blessed-inner { grid-template-columns: 1fr; gap: 3rem; }
     }
     @media (max-width: 640px) {
+      nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
-      .fives-grid { grid-template-columns: repeat(2,1fr); }
+      section { padding: 5rem 1.5rem; }
+      .fives-grid { grid-template-columns: repeat(2, 1fr); }
       .build-grid { grid-template-columns: 1fr; }
-      section { padding: 4.5rem 1.5rem; }
-      .hero-portrait { width: 108px; height: 108px; }
+      .hero-photo { width: 100px; height: 100px; }
     }
   </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">Joe McAdam</a>
   <ul class="nav-links">
     <li><a href="#fives">The 5 F's</a></li>
     <li><a href="#build">What I Build</a></li>
     <li><a href="#focus">Current Focus</a></li>
+    <li><a href="#blessed">The Blessed Life</a></li>
     <li><a href="#connect" class="nav-cta">Connect</a></li>
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero-content">
-    <img src="joe-headshot.jpg" alt="Joe McAdam" class="hero-portrait" />
+  <div class="hero-inner">
+    <img src="joe-headshot.jpg" alt="Joe McAdam" class="hero-photo" />
     <span class="hero-eyebrow">Lake Michigan &nbsp;&middot;&nbsp; Faith &nbsp;&middot;&nbsp; Family &nbsp;&middot;&nbsp; Freedom</span>
     <h1 class="hero-name">Joe McAdam</h1>
-    <p class="hero-tagline">Builder. Operator. Connector.</p>
-    <div class="hero-rule"></div>
-    <p class="hero-description">
-      Helping faith-driven people build a blessed life through the 5&nbsp;F&rsquo;s &mdash;
-      Faith, Family, Fitness, Finances, and Fun.
-    </p>
+    <p class="hero-role">Builder. Operator. Connector.</p>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">Helping faith-driven people build a blessed life through the 5&nbsp;F&rsquo;s &mdash; Faith, Family, Fitness, Finances, and Fun.</p>
+    <p class="hero-sub">Less chaos. More calling. Better life.</p>
     <div class="hero-ctas">
-      <a href="#connect" class="btn-gold">Let&rsquo;s Connect</a>
-      <a href="#fives" class="btn-ghost">The 5 F&rsquo;s</a>
+      <a href="#connect" class="btn btn-gold">Connect With Me</a>
+      <a href="#blessed" class="btn btn-outline">Explore The Blessed Life</a>
     </div>
   </div>
   <div class="hero-scroll"><div class="scroll-line"></div></div>
 </section>
 
+<!-- THE 5 F'S -->
 <section class="fives" id="fives">
   <div class="inner">
-    <div class="fives-head">
-      <p class="s-label reveal">A Framework for a Full Life</p>
-      <h2 class="s-title reveal">The 5 F&rsquo;s</h2>
-      <p class="s-body reveal">Everything I do &mdash; the businesses I build, the people I connect, the life I live &mdash; comes back to five things. Not a brand. A belief system.</p>
+    <div class="sec-head">
+      <p class="sec-label reveal">A Framework for a Full Life</p>
+      <h2 class="sec-title reveal">The 5 F&rsquo;s</h2>
+      <p class="sec-body reveal">Not a brand. A belief system. Everything I build, every decision I make, every conversation I have runs through these five filters.</p>
     </div>
-    <div class="fives-stack">
-      <div class="f-card reveal">
-        <div class="f-icon ic-faith">&#x1F64F;</div>
-        <div class="f-text">
-          <div class="f-label">F1 &mdash; Faith</div>
-          <div class="f-name">The Anchor</div>
-          <p class="f-desc">Everything I do is rooted in faith. It is not a department of life &mdash; it is the foundation. When faith is right, everything else has a chance to be right too.</p>
+    <div class="fives-grid">
+
+      <div class="f-card c-faith reveal">
+        <div class="f-num">F 1</div>
+        <div class="f-icon-wrap">
+          <svg class="f-icon-svg" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 3L14 25M8 9H20" stroke="#c9973a" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
         </div>
+        <div class="f-title">Faith</div>
+        <p class="f-desc">Foundation, calling, conviction, and values.</p>
       </div>
-      <div class="f-card reveal">
-        <div class="f-icon ic-family">&#x2764;&#xFE0F;</div>
-        <div class="f-text">
-          <div class="f-label">F2 &mdash; Family</div>
-          <div class="f-name">The Why</div>
-          <p class="f-desc">Kathryn, the kids, and the people who matter most. Every business I build, every decision I make, runs through this filter: does this serve my family or take from it?</p>
+
+      <div class="f-card c-family reveal">
+        <div class="f-num">F 2</div>
+        <div class="f-icon-wrap">
+          <svg class="f-icon-svg" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 24C14 24 4 18 4 11a5 5 0 0110 0 5 5 0 0110 0c0 7-10 13-10 13z" stroke="#d9715a" stroke-width="2.2" stroke-linejoin="round"/>
+          </svg>
         </div>
+        <div class="f-title">Family</div>
+        <p class="f-desc">Marriage, home, relationships, and legacy.</p>
       </div>
-      <div class="f-card reveal">
-        <div class="f-icon ic-fitness">&#x1F4AA;</div>
-        <div class="f-text">
-          <div class="f-label">F3 &mdash; Fitness</div>
-          <div class="f-name">The Energy</div>
-          <p class="f-desc">You cannot build a blessed life from a depleted body. Fitness is not vanity &mdash; it is stewardship. Strong body, clear mind, the energy to show up fully for everyone who depends on you.</p>
+
+      <div class="f-card c-fitness reveal">
+        <div class="f-num">F 3</div>
+        <div class="f-icon-wrap">
+          <svg class="f-icon-svg" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="8" r="3.5" stroke="#5aaa72" stroke-width="2.2"/>
+            <path d="M8 24v-6a6 6 0 0112 0v6" stroke="#5aaa72" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
         </div>
+        <div class="f-title">Fitness</div>
+        <p class="f-desc">Health, energy, strength, and daily habits.</p>
       </div>
-      <div class="f-card reveal">
-        <div class="f-icon ic-finance">&#x1F4BC;</div>
-        <div class="f-text">
-          <div class="f-label">F4 &mdash; Finances</div>
-          <div class="f-name">The Freedom</div>
-          <p class="f-desc">Wealth is a tool, not a goal. I help people build financial foundations &mdash; insurance, planning, income streams &mdash; that create freedom to live on purpose, not just on a paycheck.</p>
+
+      <div class="f-card c-finance reveal">
+        <div class="f-num">F 4</div>
+        <div class="f-icon-wrap">
+          <svg class="f-icon-svg" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="8" width="20" height="14" rx="2.5" stroke="#4a7fa5" stroke-width="2.2"/>
+            <path d="M4 13h20" stroke="#4a7fa5" stroke-width="2.2"/>
+            <path d="M9 17h4" stroke="#4a7fa5" stroke-width="2" stroke-linecap="round"/>
+          </svg>
         </div>
+        <div class="f-title">Finances</div>
+        <p class="f-desc">Stewardship, protection, opportunity, and freedom.</p>
       </div>
-      <div class="f-card reveal">
-        <div class="f-icon ic-fun">&#x1F3D6;&#xFE0F;</div>
-        <div class="f-text">
-          <div class="f-label">F5 &mdash; Fun</div>
-          <div class="f-name">The Reward</div>
-          <p class="f-desc">Life is meant to be enjoyed. Lake Michigan mornings, family adventures, good food, great friends. Fun is not a luxury &mdash; it is a reminder that you are building something worth living in.</p>
+
+      <div class="f-card c-fun reveal">
+        <div class="f-num">F 5</div>
+        <div class="f-icon-wrap">
+          <svg class="f-icon-svg" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 4C14 4 6 10 6 16a8 8 0 0016 0c0-6-8-12-8-12z" stroke="#e8a84a" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M14 20v-6" stroke="#e8a84a" stroke-width="2" stroke-linecap="round"/>
+          </svg>
         </div>
+        <div class="f-title">Fun</div>
+        <p class="f-desc">Adventure, coffee, travel, lifestyle, and joy.</p>
       </div>
+
     </div>
   </div>
 </section>
 
+<!-- WHAT I BUILD -->
 <section class="build" id="build">
   <div class="inner">
-    <div class="build-top">
+    <div class="build-intro">
       <div>
-        <p class="s-label reveal">What I Do</p>
-        <h2 class="s-title reveal">I build things<br>that matter.</h2>
+        <p class="sec-label reveal">What I Do</p>
+        <h2 class="sec-title reveal">I build things<br>that matter.</h2>
       </div>
-      <p class="s-body reveal" style="margin-top:2.5rem;">From insurance and financial planning to digital brands and lifestyle businesses &mdash; I connect people, build systems, and help others create a life they are proud of.</p>
+      <p class="sec-body reveal" style="margin-top:2.5rem;">From insurance and financial planning to digital brands and lifestyle businesses &mdash; I connect people, build systems, and help others create a life they are proud of.</p>
     </div>
     <div class="build-grid">
       <div class="b-card reveal"><div class="b-icon">&#x1F3E6;</div><div class="b-title">Financial Planning</div><p class="b-desc">Life insurance, wealth strategy, and legacy planning for families and business owners.</p></div>
@@ -243,28 +329,102 @@
   </div>
 </section>
 
-<section class="focus" id="focus">
-  <div class="inner">
-    <p class="s-label reveal">Right Now</p>
-    <h2 class="s-title reveal">What I&rsquo;m building in 2025.</h2>
-    <p class="s-body reveal">A few focused projects &mdash; each one connected to the 5 F&rsquo;s and the bigger vision.</p>
-    <div class="focus-grid">
-      <div class="fc-card reveal"><div class="fc-label">Brand</div><div class="fc-title">TheBlessedLife.co</div><p class="fc-desc">The umbrella lifestyle brand connecting faith, health, wealth, and legacy for everyday families.</p></div>
-      <div class="fc-card reveal"><div class="fc-label">Event</div><div class="fc-title">Healthy, Wealthy &amp; Wise</div><p class="fc-desc">A webinar and community for faith-driven people ready to build a life that is whole &mdash; not just successful.</p></div>
-      <div class="fc-card reveal"><div class="fc-label">Health</div><div class="fc-title">Health Detective AI</div><p class="fc-desc">Helping people understand their own health data and take ownership of their wellness journey.</p></div>
-      <div class="fc-card reveal"><div class="fc-label">Community</div><div class="fc-title">Kathryn McAdam Brand</div><p class="fc-desc">Supporting Kathryn&rsquo;s public voice in health, wellness, and faith-based transformation for women.</p></div>
+<!-- BEHIND THE SCENES -->
+<section class="behind" id="behind">
+  <div class="behind-inner">
+    <p class="sec-label reveal" style="text-align:center;">Who I Am</p>
+    <p class="behind-quote reveal">&ldquo;I help people <span>sort the chaos</span>, find their calling, and build a life that actually works.&rdquo;</p>
+    <p class="behind-body reveal">
+      I am a husband, dad, builder, and connector based in Michigan. I have spent years helping families protect what matters, building businesses from scratch, and figuring out how to live well across all five areas of life &mdash; not just one. I am not a guru. I am a guy who has done the work, made the mistakes, and keeps showing up.
+    </p>
+    <div class="behind-tags reveal">
+      <span class="tag">Lake Michigan</span>
+      <span class="tag">Coffee First</span>
+      <span class="tag">Faith-Rooted</span>
+      <span class="tag">Family Man</span>
+      <span class="tag">Builder Mentality</span>
+      <span class="tag">Systems Thinker</span>
+      <span class="tag">Connector</span>
+      <span class="tag">Lifelong Learner</span>
     </div>
   </div>
 </section>
 
-<section class="connect" id="connect">
+<!-- CURRENT FOCUS -->
+<section class="focus" id="focus">
   <div class="inner">
-    <p class="s-label reveal">Get in Touch</p>
-    <h2 class="s-title reveal">Let&rsquo;s build something together.</h2>
-    <p class="s-body reveal">Whether you want to connect, collaborate, or just say hello &mdash; I would love to hear from you.</p>
+    <p class="sec-label reveal">Right Now</p>
+    <h2 class="sec-title reveal">What I&rsquo;m building in 2025.</h2>
+    <p class="sec-body reveal">A few focused projects &mdash; each one connected to the 5&nbsp;F&rsquo;s and the bigger vision.</p>
+    <div class="focus-grid">
+      <div class="fc reveal">
+        <div class="fc-label">Brand</div>
+        <div class="fc-title">TheBlessedLife.co</div>
+        <p class="fc-desc">The umbrella lifestyle brand connecting faith, health, wealth, and legacy for everyday families.</p>
+      </div>
+      <div class="fc reveal">
+        <div class="fc-label">Event</div>
+        <div class="fc-title">Healthy, Wealthy &amp; Wise</div>
+        <p class="fc-desc">A webinar and community for faith-driven people ready to build a life that is whole &mdash; not just successful.</p>
+      </div>
+      <div class="fc reveal">
+        <div class="fc-label">Health</div>
+        <div class="fc-title">Health Detective AI</div>
+        <p class="fc-desc">Helping people understand their own health data and take ownership of their wellness journey.</p>
+      </div>
+      <div class="fc reveal">
+        <div class="fc-label">Community</div>
+        <div class="fc-title">Kathryn McAdam Brand</div>
+        <p class="fc-desc">Supporting Kathryn&rsquo;s public voice in health, wellness, and faith-based transformation for women.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE BLESSED LIFE -->
+<section class="blessed" id="blessed">
+  <div class="inner">
+    <div class="blessed-inner">
+      <div class="blessed-text">
+        <p class="sec-label reveal">The Bigger Vision</p>
+        <h2 class="sec-title reveal">The Blessed Life</h2>
+        <p class="sec-body reveal">
+          TheBlessedLife.co is the umbrella brand for everything I am building &mdash; a community, a content platform, and a movement for faith-driven people who want to live well across all five areas of life.
+        </p>
+        <div class="blessed-pills reveal">
+          <span class="pill">Faith &amp; Calling</span>
+          <span class="pill">Family &amp; Legacy</span>
+          <span class="pill">Health &amp; Fitness</span>
+          <span class="pill">Wealth &amp; Freedom</span>
+          <span class="pill">Adventure &amp; Joy</span>
+        </div>
+        <a href="https://theblessedlife.co" target="_blank" rel="noopener" class="btn btn-blue reveal">Visit TheBlessedLife.co</a>
+      </div>
+      <div class="blessed-visual reveal">
+        <div class="bv-eyebrow">The Mission</div>
+        <div class="bv-title">A Blessed Life<br>is a Built Life.</div>
+        <p class="bv-sub">It does not happen by accident. It is designed, protected, and lived on purpose.</p>
+        <div class="bv-items">
+          <div class="bv-item"><span class="bv-dot"></span>Clarity on what matters most</div>
+          <div class="bv-item"><span class="bv-dot"></span>Systems that reduce daily chaos</div>
+          <div class="bv-item"><span class="bv-dot"></span>Community that keeps you accountable</div>
+          <div class="bv-item"><span class="bv-dot"></span>Content that actually helps you grow</div>
+          <div class="bv-item"><span class="bv-dot"></span>A life worth waking up for</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section class="connect" id="connect">
+  <div class="inner-sm">
+    <p class="sec-label reveal">Get in Touch</p>
+    <h2 class="sec-title reveal">Let&rsquo;s build something together.</h2>
+    <p class="sec-body reveal">Whether you want to connect, collaborate, or just say hello &mdash; I would love to hear from you.</p>
     <div class="connect-ctas reveal">
-      <a href="https://www.linkedin.com/in/joe-mcadam/" target="_blank" rel="noopener" class="btn-gold">Connect on LinkedIn</a>
-      <a href="mailto:joe@theblessedlife.co" class="btn-navy">Send an Email</a>
+      <a href="https://www.linkedin.com/in/joe-mcadam/" target="_blank" rel="noopener" class="btn btn-gold">Connect on LinkedIn</a>
+      <a href="mailto:joe@theblessedlife.co" class="btn btn-navy">Send an Email</a>
     </div>
     <div class="connect-links reveal">
       <a href="https://theblessedlife.co" target="_blank" rel="noopener" class="c-link">TheBlessedLife.co</a>
@@ -274,15 +434,25 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <p class="f-name">Joe McAdam</p>
-  <p class="f-sub">Builder &nbsp;&middot;&nbsp; Operator &nbsp;&middot;&nbsp; Connector &nbsp;&middot;&nbsp; Lake Michigan</p>
+  <p class="ft-name">Joe McAdam</p>
+  <p class="ft-sub">Builder &nbsp;&middot;&nbsp; Operator &nbsp;&middot;&nbsp; Connector &nbsp;&middot;&nbsp; Lake Michigan</p>
 </footer>
 
 <script>
+  // Sticky nav
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
-  const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.1 });
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Scroll reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
